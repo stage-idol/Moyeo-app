@@ -58,7 +58,7 @@ flutter test
 flutter build web
 ```
 
-작성 환경에는 Flutter/Dart SDK가 없고 SDK 다운로드 요청도 프록시 연결 오류로 실패했습니다. 따라서 위 명령과 실제 브라우저/모바일 실행 검증은 수행하지 못했습니다. 테스트 파일은 작성했으나 실행 결과가 확인되지 않았습니다. `pubspec.lock`은 최초 `flutter pub get` 후 생성해 버전 관리에 포함하세요.
+로컬 환경에는 Flutter/Dart SDK가 없고 SDK 다운로드 요청도 프록시 연결 오류로 실패했습니다. GitHub Actions의 Flutter 3.24.5 / Dart 3.5.4 환경에서 `flutter pub get`, `flutter analyze --fatal-infos`, `flutter test`(3개), `flutter build web`은 모두 통과했습니다. 화면 테스트의 스크롤 탐색과 한국어 뒤로 가기 버튼 탐색을 수정했습니다. 실제 브라우저/모바일 실행과 시각 검증은 수행하지 못했습니다. `pubspec.lock`은 최초 `flutter pub get` 후 생성해 버전 관리에 포함하세요.
 
 ## GitHub Actions와 Pages 미리보기
 
@@ -72,4 +72,6 @@ flutter build web
 - 배포 성공 후 예상 주소는 `https://stage-idol.github.io/Moyeo-app/`입니다. 이 주소는 브랜치별 독립 미리보기가 아니라 저장소가 공유하는 Pages 주소이며, 마지막 성공 배포로 갱신됩니다.
 - 빌드에는 `/Moyeo-app/` base href를 적용해 GitHub 프로젝트 페이지에서 리소스 경로가 맞도록 했습니다.
 
-현재 클라우드에서는 Flutter SDK가 없고 다운로드도 프록시 `proxy:8080` 연결 오류로 실패해 네 명령 모두 실행되지 않았습니다. CI 성공이나 실제 브라우저 실행이 확인되기 전에는 미리보기가 준비되었다고 간주하지 마세요.
+검증 실행: https://github.com/stage-idol/Moyeo-app/actions/runs/41086214534
+
+위 실행에서 네 명령과 웹 아티팩트 업로드는 성공했습니다. Pages 배포는 `Get Pages site failed: Not Found`로 실패했습니다. Pages 설정을 GitHub Actions로 활성화한 뒤 위 실행의 실패한 deploy 작업을 재실행하세요. 현재 미리보기 주소는 아직 준비되지 않았습니다. 연결 도구에는 Pages 설정 변경 기능이 없어 수동 설정이 필요합니다.
