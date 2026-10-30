@@ -22,7 +22,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('모임 상세'), findsOneWidget);
     expect(find.text('테스트 모임'), findsOneWidget);
-    await tester.pageBack();
+    await tester.tap(find.byType(BackButton));
     await tester.pumpAndSettle();
     expect(find.text('진행 중인 모임 3'), findsOneWidget);
   });
