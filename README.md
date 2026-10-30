@@ -59,3 +59,17 @@ flutter build web
 ```
 
 작성 환경에는 Flutter/Dart SDK가 없고 SDK 다운로드 요청도 프록시 연결 오류로 실패했습니다. 따라서 위 명령과 실제 브라우저/모바일 실행 검증은 수행하지 못했습니다. 테스트 파일은 작성했으나 실행 결과가 확인되지 않았습니다. `pubspec.lock`은 최초 `flutter pub get` 후 생성해 버전 관리에 포함하세요.
+
+## GitHub Actions와 Pages 미리보기
+
+`.github/workflows/flutter-web.yml`은 Flutter 3.24.5를 설치하고 `pub get`, `analyze`, `test`, `build web`을 차례로 실행합니다. 하나라도 실패하면 배포하지 않습니다. 디자인과 앱 기능은 변경하지 않았습니다.
+
+- `feat/flutter-web-preview`, `main`에 push하면 검사 후 Pages 배포를 시도합니다.
+- main 대상 PR에서는 검사와 `moyeo-web` 빌드 아티팩트만 생성하며 배포하지 않습니다.
+- 저장소 **Settings → Pages → Build and deployment → Source → GitHub Actions**로 설정해야 합니다.
+- **Settings → Environments → github-pages**에 배포 브랜치 제한이 있으면 `feat/flutter-web-preview`를 허용해야 해당 브랜치에서 미리보기를 배포할 수 있습니다.
+- Actions의 **Flutter web preview** 실행을 확인합니다. Pages 설정을 완료한 후 실패 실행을 다시 실행할 수 있습니다. 워크플로가 main에 병합된 이후에는 **Run workflow**에서 브랜치를 선택할 수도 있습니다.
+- 배포 성공 후 예상 주소는 `https://stage-idol.github.io/Moyeo-app/`입니다. 이 주소는 브랜치별 독립 미리보기가 아니라 저장소가 공유하는 Pages 주소이며, 마지막 성공 배포로 갱신됩니다.
+- 빌드에는 `/Moyeo-app/` base href를 적용해 GitHub 프로젝트 페이지에서 리소스 경로가 맞도록 했습니다.
+
+현재 클라우드에서는 Flutter SDK가 없고 다운로드도 프록시 `proxy:8080` 연결 오류로 실패해 네 명령 모두 실행되지 않았습니다. CI 성공이나 실제 브라우저 실행이 확인되기 전에는 미리보기가 준비되었다고 간주하지 마세요.
