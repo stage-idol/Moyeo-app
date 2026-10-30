@@ -24,6 +24,7 @@ void main() {
     expect(find.text('테스트 모임'), findsOneWidget);
     await tester.tap(find.byType(BackButton));
     await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text('진행 중인 모임 3'), -250, scrollable: find.descendant(of: find.byType(ListView), matching: find.byType(Scrollable)).first);
     expect(find.text('진행 중인 모임 3'), findsOneWidget);
   });
 
