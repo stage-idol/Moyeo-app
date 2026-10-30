@@ -1,0 +1,16 @@
+name: moyeo
+description: 친구들과 날짜와 장소를 함께 정하는 모여! 샘플 앱
+publish_to: none
+version: 0.1.0+1
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true
